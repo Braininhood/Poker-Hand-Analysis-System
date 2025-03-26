@@ -1,0 +1,92 @@
+game_states = [
+    # Preflop Scenarios
+    [0.1, 0.8, 0.0, 0.0, 0.0, 0.9, 0.33, 0.2, 0.3, 0.6],  # UTG, tight opponent, strong hand (AA)
+    [0.2, 0.7, 0.2, 0.5, 0.0, 0.7, 0.66, 0.5, 0.4, 0.5],  # MP, neutral opponent, medium hand (AK)
+    [0.3, 0.6, 0.4, 1.0, 0.0, 0.5, 1.0, 0.8, 0.5, 0.4],  # CO, loose opponent, weak hand (KQ)
+    [0.4, 0.5, 0.6, 0.0, 0.0, 0.8, 0.33, 0.1, 0.2, 0.7],  # BTN, tight opponent, strong hand (QQ)
+    [0.5, 0.4, 0.8, 0.5, 0.0, 0.6, 0.66, 0.4, 0.3, 0.6],  # SB, neutral opponent, medium hand (JJ)
+    [0.6, 0.3, 1.0, 1.0, 0.0, 0.4, 1.0, 0.7, 0.4, 0.5],  # BB, loose opponent, weak hand (T9)
+
+    # Flop Scenarios
+    [0.5, 0.6, 0.6, 1.0, 0.25, 0.6, 0.66, 0.8, 0.5, 0.4],  # BTN, loose opponent, medium hand (KQ)
+    [0.4, 0.7, 0.4, 0.5, 0.25, 0.7, 0.33, 0.5, 0.6, 0.5],  # CO, neutral opponent, strong hand (AK)
+    [0.3, 0.8, 0.2, 0.0, 0.25, 0.8, 0.66, 0.2, 0.7, 0.6],  # MP, tight opponent, strong hand (AA)
+    [0.2, 0.9, 0.0, 0.5, 0.25, 0.9, 1.0, 0.1, 0.8, 0.7],  # UTG, neutral opponent, strong hand (KK)
+
+    # Turn Scenarios
+    [0.7, 0.3, 1.0, 0.5, 0.5, 0.2, 1.0, 0.4, 0.2, 0.3],  # BB, neutral opponent, weak hand (72o)
+    [0.6, 0.4, 0.8, 1.0, 0.5, 0.3, 0.66, 0.6, 0.3, 0.4],  # SB, loose opponent, weak hand (J2)
+    [0.5, 0.5, 0.6, 0.0, 0.5, 0.4, 0.33, 0.3, 0.4, 0.5],  # BTN, tight opponent, medium hand (TT)
+    [0.4, 0.6, 0.4, 0.5, 0.5, 0.5, 0.66, 0.5, 0.5, 0.6],  # CO, neutral opponent, medium hand (AQ)
+
+    # River Scenarios
+    [0.9, 0.7, 0.4, 1.0, 0.75, 0.8, 0.33, 1.0, 0.7, 0.8],  # CO, aggressive opponent, strong hand (AK)
+    [0.8, 0.8, 0.2, 0.5, 0.75, 0.9, 0.66, 0.8, 0.8, 0.9],  # MP, neutral opponent, strong hand (KK)
+    [0.7, 0.9, 0.0, 0.0, 0.75, 1.0, 1.0, 0.7, 0.9, 1.0],  # UTG, tight opponent, strong hand (AA)
+    [0.6, 1.0, 0.6, 0.5, 0.75, 0.7, 0.33, 0.6, 0.6, 0.7],  # BTN, neutral opponent, medium hand (JJ)
+
+    # All-In Scenarios
+    [0.8, 0.2, 0.4, 1.0, 0.0, 0.9, 0.33, 1.0, 0.9, 1.0],  # CO, aggressive opponent, strong hand (AA), Preflop
+    [0.9, 0.1, 0.6, 0.5, 0.25, 0.8, 0.66, 1.0, 0.8, 0.9],  # BTN, neutral opponent, strong hand (KK), Flop
+    [0.7, 0.3, 0.8, 1.0, 0.5, 0.7, 1.0, 1.0, 0.7, 0.8],  # SB, loose opponent, strong hand (QQ), Turn
+    [0.6, 0.4, 1.0, 0.5, 0.75, 0.6, 0.33, 1.0, 0.6, 0.7],  # BB, aggressive opponent, medium hand (AK), River
+]
+
+actions = [
+    [0, 0, 1, 0, 0],  # Raise (strong hand in Preflop)
+    [0, 1, 0, 0, 0],  # Call (medium hand in Preflop)
+    [1, 0, 0, 0, 0],  # Fold (weak hand in Preflop)
+    [0, 0, 1, 0, 0],  # Raise (strong hand in Preflop)
+    [0, 1, 0, 0, 0],  # Call (medium hand in Preflop)
+    [1, 0, 0, 0, 0],  # Fold (weak hand in Preflop)
+    
+    [0, 1, 0, 0, 0],  # Call (medium hand on Flop)
+    [0, 0, 1, 0, 0],  # Raise (strong hand on Flop)
+    [0, 0, 0, 1, 0],  # Bet (strong hand on Flop)
+    [0, 1, 0, 0, 0],  # Call (medium hand on Flop)
+    
+    [1, 0, 0, 0, 0],  # Fold (weak hand on Turn)
+    [0, 1, 0, 0, 0],  # Call (medium hand on Turn)
+    [0, 0, 1, 0, 0],  # Raise (strong hand on Turn)
+    [0, 1, 0, 0, 0],  # Call (medium hand on Turn)
+    
+    [0, 0, 0, 1, 0],  # Bet (strong hand on River)
+    [0, 0, 1, 0, 0],  # Raise (strong hand on River)
+    [0, 0, 0, 1, 0],  # Bet (strong hand on River)
+    [0, 1, 0, 0, 0],  # Call (medium hand on River)
+
+    # All-In Actions
+    [0, 0, 0, 0, 1],  # All-In (strong hand in Preflop)
+    [0, 0, 0, 0, 1],  # All-In (strong hand on Flop)
+    [0, 0, 0, 0, 1],  # All-In (strong hand on Turn)
+    [0, 0, 0, 0, 1],  # All-In (medium hand on River)
+]
+
+# Convert dataset to PyTorch tensors
+X_train = torch.tensor(game_states, dtype=torch.float32)
+y_train = torch.tensor(actions, dtype=torch.float32)
+
+# Initialize model, loss function, and optimizer
+model = ActionRecommender(input_size, hidden_size, output_size)
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+
+# Training loop
+for epoch in range(num_epochs):
+    model.train()
+    optimizer.zero_grad()
+    
+    # Forward pass
+    outputs = model(X_train)
+    loss = criterion(outputs, y_train)
+    
+    # Backward pass and optimization
+    loss.backward()
+    optimizer.step()
+    
+    if (epoch + 1) % 10 == 0:
+        logging.info(f"Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}")
+
+# Save the trained model
+torch.save(model.state_dict(), "C:\Users\kdomm\OneDrive\Desktop\AI\db\nlh_poker_model.pth")
+logging.info("Model trained and saved as 'nlh_poker_model.pth'.")
